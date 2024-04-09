@@ -62,5 +62,13 @@
     <guid>https://example.com/%E6%88%91%E7%9A%84%E6%96%87%E7%AB%A0/</guid>
     <description><![CDATA[]]></description>
 </item>
+<item>
+    <title>First_post</title>
+    <link>https://example.com/first_post/</link>
+    <pubDate>Tue, 09 Apr 2024 21:22:42 &#43;0800</pubDate>
+    <author>xxxx</author>
+    <guid>https://example.com/first_post/</guid>
+    <description><![CDATA[]]></description>
+</item>
 </channel>
 </rss>
