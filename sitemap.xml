@@ -1,11 +1,18 @@
-<urlset
-    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-    xmlns:xhtml="http://www.w3.org/1999/xhtml"
-    ><url>
-            <loc>http://localhost:1313/posts/</loc><lastmod>2024-04-09T22:11:03&#43;08:00</lastmod></url><url>
-            <loc>http://localhost:1313/</loc><lastmod>2024-04-09T22:11:03&#43;08:00</lastmod></url><url>
-            <loc>http://localhost:1313/posts/%E6%88%91%E7%9A%84%E6%96%87%E7%AB%A0/</loc><lastmod>2024-04-09T22:11:03&#43;08:00</lastmod></url><url>
-            <loc>http://localhost:1313/%E6%88%91%E7%9A%84%E6%96%87%E7%AB%A0/</loc><lastmod>2024-04-09T22:07:46&#43;08:00</lastmod></url><url>
-            <loc>http://localhost:1313/posts/first_post/</loc><lastmod>2024-04-09T21:22:42&#43;08:00</lastmod></url><url>
-            <loc>http://localhost:1313/categories/</loc></url><url>
-            <loc>http://localhost:1313/tags/</loc></url></urlset>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <sitemap>
+    <loc>https://example.com/en/sitemap.xml</loc>
+    
+      <lastmod>2024-04-09T22:11:03+08:00</lastmod>
+    
+  </sitemap>
+  
+  <sitemap>
+    <loc>https://example.com/zh-cn/sitemap.xml</loc>
+    
+      <lastmod>2020-06-12T10:10:13+03:00</lastmod>
+    
+  </sitemap>
+  
+</sitemapindex>
