@@ -44,5 +44,21 @@
     <description><![CDATA[<a href="https://github.com/dillonzq/LoveIt/releases/tag/v0.2.0" rel="noopener noreffer" target="_blank"></a>
 <p>The <code>bilibili</code> shortcode embeds a responsive video player for bilibili videos.</p>]]></description>
 </item>
+<item>
+    <title>我的第一遍文章</title>
+    <link>https://example.com/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E9%81%8D%E6%96%87%E7%AB%A0/</link>
+    <pubDate>Tue, 09 Apr 2024 23:03:45 &#43;0800</pubDate>
+    <author>xxxx</author>
+    <guid>https://example.com/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E9%81%8D%E6%96%87%E7%AB%A0/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>我的文章</title>
+    <link>https://example.com/%E6%88%91%E7%9A%84%E6%96%87%E7%AB%A0/</link>
+    <pubDate>Tue, 09 Apr 2024 22:11:03 &#43;0800</pubDate>
+    <author>xxxx</author>
+    <guid>https://example.com/%E6%88%91%E7%9A%84%E6%96%87%E7%AB%A0/</guid>
+    <description><![CDATA[]]></description>
+</item>
 </channel>
 </rss>
