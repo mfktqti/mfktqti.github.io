@@ -168,7 +168,12 @@
         <a href="/go-gmp/">深入探讨Go语言协程调度：GRM模型解析与优化策略</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xxxx</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-04-28">2024-04-28</time></span>&nbsp;<span class="post-category">included in <a href="/categories/go/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Go</a></span></div><div class="content">调度器 GMP 模型 G：goroutine（协程）
 M：thread（内核线程，不是用户态线程）
-P：processer（调度器）</div><div class="post-footer">
+P：processer（调度器）
+GM 模型 G（协程）通常在代码里用 go 关键字执行一个方法，那么就等于起了一个 G
+M（内核线程）操作系统内核其实看不见 G 和 P，只知道自己在执行一个线程
+G 和 P 都是在用户层上的实现
+并发量小的时候还好，当并发量大了，这把大锁，就成了性能瓶颈
+GMP 由来 基于没有什么是加一个中间层不能解决的思路，golang在原有的GM的基础上加入了一个调度器P 可以简单理解为是在G和M中间加了个中间层 于是就有了现在的GMP模型里的P </div><div class="post-footer">
         <a href="/go-gmp/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/golang/">Golang</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">

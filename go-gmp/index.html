@@ -7,7 +7,12 @@
         <title>深入探讨Go语言协程调度：GRM模型解析与优化策略 - LoveIt</title><meta name="Description" content="Hugo theme - LoveIt"><meta property="og:title" content="深入探讨Go语言协程调度：GRM模型解析与优化策略" />
 <meta property="og:description" content="调度器 GMP 模型 G：goroutine（协程）
 M：thread（内核线程，不是用户态线程）
-P：processer（调度器）" />
+P：processer（调度器）
+GM 模型 G（协程）通常在代码里用 go 关键字执行一个方法，那么就等于起了一个 G
+M（内核线程）操作系统内核其实看不见 G 和 P，只知道自己在执行一个线程
+G 和 P 都是在用户层上的实现
+并发量小的时候还好，当并发量大了，这把大锁，就成了性能瓶颈
+GMP 由来 基于没有什么是加一个中间层不能解决的思路，golang在原有的GM的基础上加入了一个调度器P 可以简单理解为是在G和M中间加了个中间层 于是就有了现在的GMP模型里的P " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://example.com/go-gmp/" /><meta property="og:image" content="https://example.com/logo.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2024-04-28T17:02:24+08:00" />
@@ -16,7 +21,12 @@ P：processer（调度器）" />
 <meta name="twitter:image" content="https://example.com/logo.png" /><meta name="twitter:title" content="深入探讨Go语言协程调度：GRM模型解析与优化策略"/>
 <meta name="twitter:description" content="调度器 GMP 模型 G：goroutine（协程）
 M：thread（内核线程，不是用户态线程）
-P：processer（调度器）"/>
+P：processer（调度器）
+GM 模型 G（协程）通常在代码里用 go 关键字执行一个方法，那么就等于起了一个 G
+M（内核线程）操作系统内核其实看不见 G 和 P，只知道自己在执行一个线程
+G 和 P 都是在用户层上的实现
+并发量小的时候还好，当并发量大了，这把大锁，就成了性能瓶颈
+GMP 由来 基于没有什么是加一个中间层不能解决的思路，golang在原有的GM的基础上加入了一个调度器P 可以简单理解为是在G和M中间加了个中间层 于是就有了现在的GMP模型里的P "/>
       <meta name="twitter:site" content="@xxxx"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -37,7 +47,7 @@ P：processer（调度器）"/>
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "golang","wordcount":  6 ,
+                        }],"genre": "posts","keywords": "golang","wordcount":  26 ,
         "url": "https:\/\/example.com\/go-gmp\/","datePublished": "2024-04-28T17:02:24+08:00","dateModified": "2024-04-28T17:02:24+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -122,7 +132,7 @@ P：processer（调度器）"/>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">深入探讨Go语言协程调度：GRM模型解析与优化策略</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xxxx</a></span>&nbsp;<span class="post-category">included in <a href="/categories/go/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Go</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-28">2024-04-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;6 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-28">2024-04-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;26 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;<span id="/go-gmp/" class="leancloud_visitors" data-flag-title="深入探讨Go语言协程调度：GRM模型解析与优化策略">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
@@ -131,11 +141,59 @@ P：processer（调度器）"/>
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#gm-模型">GM 模型</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
             </div><div class="content" id="content"><h1 id="调度器-gmp-模型">调度器 GMP 模型</h1>
+<ol>
+<li>
 <p>G：goroutine（协程）</p>
+</li>
+<li>
 <p>M：thread（内核线程，不是用户态线程）</p>
+</li>
+<li>
 <p>P：processer（调度器）</p>
+</li>
+</ol>
+<h3 id="gm-模型">GM 模型</h3>
+<ul>
+<li>
+<p>G（协程）通常在代码里用 go 关键字执行一个方法，那么就等于起了一个 G</p>
+</li>
+<li>
+<p>M（内核线程）操作系统内核其实看不见 G 和 P，只知道自己在执行一个线程</p>
+</li>
+<li>
+<p>G 和 P 都是在用户层上的实现</p>
+</li>
+<li>
+<p>并发量小的时候还好，当并发量大了，这把大锁，就成了性能瓶颈</p>
+</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://mmbiz.qpic.cn/mmbiz_gif/0dPmCT81yuB0ctaYnLujnvicVQf0SmV7e5Ua10qx9GEfYfIjO9I5qtf7f6JUWicrxBqBDVIGWy1FMHAzjicUlRqLg/640?wx_fmt=gif&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1"
+        data-srcset="https://mmbiz.qpic.cn/mmbiz_gif/0dPmCT81yuB0ctaYnLujnvicVQf0SmV7e5Ua10qx9GEfYfIjO9I5qtf7f6JUWicrxBqBDVIGWy1FMHAzjicUlRqLg/640?wx_fmt=gif&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1, https://mmbiz.qpic.cn/mmbiz_gif/0dPmCT81yuB0ctaYnLujnvicVQf0SmV7e5Ua10qx9GEfYfIjO9I5qtf7f6JUWicrxBqBDVIGWy1FMHAzjicUlRqLg/640?wx_fmt=gif&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1 1.5x, https://mmbiz.qpic.cn/mmbiz_gif/0dPmCT81yuB0ctaYnLujnvicVQf0SmV7e5Ua10qx9GEfYfIjO9I5qtf7f6JUWicrxBqBDVIGWy1FMHAzjicUlRqLg/640?wx_fmt=gif&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1 2x"
+        data-sizes="auto"
+        alt="https://mmbiz.qpic.cn/mmbiz_gif/0dPmCT81yuB0ctaYnLujnvicVQf0SmV7e5Ua10qx9GEfYfIjO9I5qtf7f6JUWicrxBqBDVIGWy1FMHAzjicUlRqLg/640?wx_fmt=gif&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1"
+        title="gm调度图" /></p>
+<ul>
+<li>GMP 由来
+<ul>
+<li>基于没有什么是加一个中间层不能解决的思路，golang在原有的GM的基础上加入了一个调度器P</li>
+<li>可以简单理解为是在G和M中间加了个中间层</li>
+<li>于是就有了现在的GMP模型里的P</li>
+</ul>
+</li>
+</ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
