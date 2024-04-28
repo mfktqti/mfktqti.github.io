@@ -12,7 +12,7 @@ GM 模型 G（协程）通常在代码里用 go 关键字执行一个方法，�
 M（内核线程）操作系统内核其实看不见 G 和 P，只知道自己在执行一个线程
 G 和 P 都是在用户层上的实现
 并发量小的时候还好，当并发量大了，这把大锁，就成了性能瓶颈
-GMP 由来 基于没有什么是加一个中间层不能解决的思路，golang在原有的GM的基础上加入了一个调度器P 可以简单理解为是在G和M中间加了个中间层 于是就有了现在的GMP模型里的P " />
+GMP 由来 基于没有什么是加一个中间层不能解决的思路，golang在原有的GM的基础上加入了一个调度器P 可以简单理解为是在G和M中间加了个中间层 于是就有了现在的GMP模型里的P GMP 模型 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://example.com/go-gmp/" /><meta property="og:image" content="https://example.com/logo.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2024-04-28T17:02:24+08:00" />
@@ -26,7 +26,7 @@ GM 模型 G（协程）通常在代码里用 go 关键字执行一个方法，�
 M（内核线程）操作系统内核其实看不见 G 和 P，只知道自己在执行一个线程
 G 和 P 都是在用户层上的实现
 并发量小的时候还好，当并发量大了，这把大锁，就成了性能瓶颈
-GMP 由来 基于没有什么是加一个中间层不能解决的思路，golang在原有的GM的基础上加入了一个调度器P 可以简单理解为是在G和M中间加了个中间层 于是就有了现在的GMP模型里的P "/>
+GMP 由来 基于没有什么是加一个中间层不能解决的思路，golang在原有的GM的基础上加入了一个调度器P 可以简单理解为是在G和M中间加了个中间层 于是就有了现在的GMP模型里的P GMP 模型 "/>
       <meta name="twitter:site" content="@xxxx"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -47,7 +47,7 @@ GMP 由来 基于没有什么是加一个中间层不能解决的思路，golang
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "golang","wordcount":  26 ,
+                        }],"genre": "posts","keywords": "golang","wordcount":  28 ,
         "url": "https:\/\/example.com\/go-gmp\/","datePublished": "2024-04-28T17:02:24+08:00","dateModified": "2024-04-28T17:02:24+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -132,7 +132,7 @@ GMP 由来 基于没有什么是加一个中间层不能解决的思路，golang
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">深入探讨Go语言协程调度：GRM模型解析与优化策略</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xxxx</a></span>&nbsp;<span class="post-category">included in <a href="/categories/go/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Go</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-28">2024-04-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;26 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-28">2024-04-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;28 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;<span id="/go-gmp/" class="leancloud_visitors" data-flag-title="深入探讨Go语言协程调度：GRM模型解析与优化策略">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
@@ -146,6 +146,7 @@ GMP 由来 基于没有什么是加一个中间层不能解决的思路，golang
     <li>
       <ul>
         <li><a href="#gm-模型">GM 模型</a></li>
+        <li><a href="#gmp-模型">GMP 模型</a></li>
       </ul>
     </li>
   </ul>
@@ -194,6 +195,7 @@ GMP 由来 基于没有什么是加一个中间层不能解决的思路，golang
 </ul>
 </li>
 </ul>
+<h3 id="gmp-模型">GMP 模型</h3>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
