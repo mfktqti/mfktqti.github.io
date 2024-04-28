@@ -166,7 +166,7 @@
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/emoji/">Emoji</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/go-gmp/">深入探讨Go语言协程调度：GRM模型解析与优化策略</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xxxx</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-04-28">2024-04-28</time></span></div><div class="content">深入探讨Go语言协程调度：GRM模型解析与优化策略 调度器 GMP 模型 G：goroutine（协程）
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xxxx</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-04-28">2024-04-28</time></span>&nbsp;<span class="post-category">included in <a href="/categories/go/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Go</a></span></div><div class="content">深入探讨Go语言协程调度：GRM模型解析与优化策略 调度器 GMP 模型 G：goroutine（协程）
 M：thread（内核线程，不是用户态线程）
 P：processer（调度器）
 GM 模型 G（协程）通常在代码里用 go 关键字执行一个方法，那么就等于起了一个 G
@@ -178,7 +178,8 @@ M想要运行G，就要先获取P，然后从P的本地队列获取G 2、本地�
 新建G时，新G会优先加入到P的本地队列 如果本地队列满了，则会把本地队列中一半的G移动到全局队列 3、从其他P本地队列的G放到自己P队列
 如果全局队列为空时，M会从其他P的本地队列偷（stealing）一半G放到自己P的本地队列 4、M从P获取下一个G，不断重复
 M运行G，G执行之后，M会从P获取下一个G，不断重复下去 </div><div class="post-footer">
-        <a href="/go-gmp/">Read More</a></div>
+        <a href="/go-gmp/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/golang/">Golang</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E9%81%8D%E6%96%87%E7%AB%A0/">我的第一遍文章</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xxxx</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-04-09">2024-04-09</time></span>&nbsp;<span class="post-category">included in <a href="/categories/markdown/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Markdown</a></span></div><div class="content"></div><div class="post-footer">
