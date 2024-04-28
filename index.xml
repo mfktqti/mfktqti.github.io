@@ -3,7 +3,7 @@
         <title>LoveIt</title>
         <link>https://example.com/</link>
         <description>Hugo theme - LoveIt</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 09 Apr 2024 23:03:45 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 28 Apr 2024 17:02:24 &#43;0800</lastBuildDate>
             <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
         <item>
     <title>Theme Documentation - Basics</title>
@@ -47,6 +47,16 @@
 <p>The <code>bilibili</code> shortcode embeds a responsive video player for bilibili videos.</p>]]></description>
 </item>
 <item>
+    <title>深入探讨Go语言协程调度：GRM模型解析与优化策略</title>
+    <link>https://example.com/go-gmp/</link>
+    <pubDate>Sun, 28 Apr 2024 17:02:24 &#43;0800</pubDate>
+    <author>xxxx</author>
+    <guid>https://example.com/go-gmp/</guid>
+    <description><![CDATA[调度器 GMP 模型 G：goroutine（协程）
+M：thread（内核线程，不是用户态线程）
+P：processer（调度器）]]></description>
+</item>
+<item>
     <title>我的第一遍文章</title>
     <link>https://example.com/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E9%81%8D%E6%96%87%E7%AB%A0/</link>
     <pubDate>Tue, 09 Apr 2024 23:03:45 &#43;0800</pubDate>
@@ -60,14 +70,6 @@
     <pubDate>Tue, 09 Apr 2024 22:11:03 &#43;0800</pubDate>
     <author>xxxx</author>
     <guid>https://example.com/%E6%88%91%E7%9A%84%E6%96%87%E7%AB%A0/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>First_post</title>
-    <link>https://example.com/first_post/</link>
-    <pubDate>Tue, 09 Apr 2024 21:22:42 &#43;0800</pubDate>
-    <author>xxxx</author>
-    <guid>https://example.com/first_post/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>

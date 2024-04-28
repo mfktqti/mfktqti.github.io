@@ -1,0 +1,17 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Golang - Tag - LoveIt</title>
+        <link>https://example.com/tags/golang/</link>
+        <description>Golang - Tag - LoveIt</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 28 Apr 2024 17:02:24 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/golang/" rel="self" type="application/rss+xml" /><item>
+    <title>深入探讨Go语言协程调度：GRM模型解析与优化策略</title>
+    <link>https://example.com/go-gmp/</link>
+    <pubDate>Sun, 28 Apr 2024 17:02:24 &#43;0800</pubDate>
+    <author>xxxx</author>
+    <guid>https://example.com/go-gmp/</guid>
+    <description><![CDATA[调度器 GMP 模型 G：goroutine（协程）
+M：thread（内核线程，不是用户态线程）
+P：processer（调度器）]]></description>
+</item>
+</channel>
+</rss>
