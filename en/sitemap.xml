@@ -47,6 +47,25 @@
                     hreflang="en"
                     href="https://example.com/theme-documentation-bilibili-shortcode/"
                     /></url><url>
+            <loc>https://example.com/</loc><lastmod>2024-04-28T20:11:03&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="zh-cn"
+                        href="https://example.com/zh-cn/"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="en"
+                    href="https://example.com/"
+                    /></url><url>
+            <loc>https://example.com/posts/</loc><lastmod>2024-04-28T20:11:03&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="zh-cn"
+                        href="https://example.com/zh-cn/posts/"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="en"
+                    href="https://example.com/posts/"
+                    /></url><url>
+            <loc>https://example.com/go-gmp/</loc><lastmod>2024-04-28T20:11:03&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://example.com/categories/</loc><lastmod>2024-04-09T23:40:10&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
@@ -65,15 +84,6 @@
                     hreflang="en"
                     href="https://example.com/tags/html/"
                     /></url><url>
-            <loc>https://example.com/</loc><lastmod>2024-04-09T23:40:10&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="zh-cn"
-                        href="https://example.com/zh-cn/"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="en"
-                    href="https://example.com/"
-                    /></url><url>
             <loc>https://example.com/tags/markdown/</loc><lastmod>2024-04-09T23:40:10&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
@@ -91,15 +101,6 @@
                     rel="alternate"
                     hreflang="en"
                     href="https://example.com/categories/markdown/"
-                    /></url><url>
-            <loc>https://example.com/posts/</loc><lastmod>2024-04-09T23:40:10&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="zh-cn"
-                        href="https://example.com/zh-cn/posts/"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="en"
-                    href="https://example.com/posts/"
                     /></url><url>
             <loc>https://example.com/tags/</loc><lastmod>2024-04-09T23:40:10&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority><xhtml:link
                         rel="alternate"
@@ -157,7 +158,6 @@
                     hreflang="en"
                     href="https://example.com/about/"
                     /></url><url>
-            <loc>https://example.com/go-gmp/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://example.com/categories/documentation/</loc><lastmod>2024-04-09T23:40:10&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
