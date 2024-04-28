@@ -4,40 +4,48 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>深入探讨Go语言协程调度：GRM模型解析与优化策略 - LoveIt</title><meta name="Description" content="Hugo theme - LoveIt"><meta property="og:title" content="深入探讨Go语言协程调度：GRM模型解析与优化策略" />
-<meta property="og:description" content="调度器 GMP 模型 G：goroutine（协程）
+        <title> - LoveIt</title><meta name="Description" content="Hugo theme - LoveIt"><meta property="og:title" content="" />
+<meta property="og:description" content="深入探讨Go语言协程调度：GRM模型解析与优化策略 调度器 GMP 模型 G：goroutine（协程）
 M：thread（内核线程，不是用户态线程）
 P：processer（调度器）
 GM 模型 G（协程）通常在代码里用 go 关键字执行一个方法，那么就等于起了一个 G
 M（内核线程）操作系统内核其实看不见 G 和 P，只知道自己在执行一个线程
 G 和 P 都是在用户层上的实现
 并发量小的时候还好，当并发量大了，这把大锁，就成了性能瓶颈
-GMP 由来 基于没有什么是加一个中间层不能解决的思路，golang在原有的GM的基础上加入了一个调度器P 可以简单理解为是在G和M中间加了个中间层 于是就有了现在的GMP模型里的P GMP 模型 " />
+GMP 由来 基于没有什么是加一个中间层不能解决的思路，golang在原有的GM的基础上加入了一个调度器P 可以简单理解为是在G和M中间加了个中间层 于是就有了现在的GMP模型里的P GMP 模型 GMP流程分析 我们通过go func()来创建一个goroutine 1、 P本地队列获取G
+M想要运行G，就要先获取P，然后从P的本地队列获取G 2、本地队列中G移动到全局队列
+新建G时，新G会优先加入到P的本地队列 如果本地队列满了，则会把本地队列中一半的G移动到全局队列 3、从其他P本地队列的G放到自己P队列
+如果全局队列为空时，M会从其他P的本地队列偷（stealing）一半G放到自己P的本地队列 4、M从P获取下一个G，不断重复
+M运行G，G执行之后，M会从P获取下一个G，不断重复下去 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://example.com/go-gmp/" /><meta property="og:image" content="https://example.com/logo.png" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2024-04-28T17:02:24+08:00" />
-<meta property="article:modified_time" content="2024-04-28T17:02:24+08:00" /><meta property="og:site_name" content="LoveIt" />
+
+<meta property="og:site_name" content="LoveIt" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://example.com/logo.png" /><meta name="twitter:title" content="深入探讨Go语言协程调度：GRM模型解析与优化策略"/>
-<meta name="twitter:description" content="调度器 GMP 模型 G：goroutine（协程）
+<meta name="twitter:image" content="https://example.com/logo.png" /><meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="深入探讨Go语言协程调度：GRM模型解析与优化策略 调度器 GMP 模型 G：goroutine（协程）
 M：thread（内核线程，不是用户态线程）
 P：processer（调度器）
 GM 模型 G（协程）通常在代码里用 go 关键字执行一个方法，那么就等于起了一个 G
 M（内核线程）操作系统内核其实看不见 G 和 P，只知道自己在执行一个线程
 G 和 P 都是在用户层上的实现
 并发量小的时候还好，当并发量大了，这把大锁，就成了性能瓶颈
-GMP 由来 基于没有什么是加一个中间层不能解决的思路，golang在原有的GM的基础上加入了一个调度器P 可以简单理解为是在G和M中间加了个中间层 于是就有了现在的GMP模型里的P GMP 模型 "/>
+GMP 由来 基于没有什么是加一个中间层不能解决的思路，golang在原有的GM的基础上加入了一个调度器P 可以简单理解为是在G和M中间加了个中间层 于是就有了现在的GMP模型里的P GMP 模型 GMP流程分析 我们通过go func()来创建一个goroutine 1、 P本地队列获取G
+M想要运行G，就要先获取P，然后从P的本地队列获取G 2、本地队列中G移动到全局队列
+新建G时，新G会优先加入到P的本地队列 如果本地队列满了，则会把本地队列中一半的G移动到全局队列 3、从其他P本地队列的G放到自己P队列
+如果全局队列为空时，M会从其他P的本地队列偷（stealing）一半G放到自己P的本地队列 4、M从P获取下一个G，不断重复
+M运行G，G执行之后，M会从P获取下一个G，不断重复下去 "/>
       <meta name="twitter:site" content="@xxxx"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/go-gmp/" /><link rel="prev" href="https://example.com/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E9%81%8D%E6%96%87%E7%AB%A0/" /><link rel="next" href="https://example.com/theme-documentation-bilibili-shortcode/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/go-gmp/" /><link rel="next" href="https://example.com/%E6%88%91%E7%9A%84%E6%96%87%E7%AB%A0/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "深入探讨Go语言协程调度：GRM模型解析与优化策略",
+        "headline": "",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
@@ -47,8 +55,8 @@ GMP 由来 基于没有什么是加一个中间层不能解决的思路，golang
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "golang","wordcount":  28 ,
-        "url": "https:\/\/example.com\/go-gmp\/","datePublished": "2024-04-28T17:02:24+08:00","dateModified": "2024-04-28T17:02:24+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","wordcount":  42 ,
+        "url": "https:\/\/example.com\/go-gmp\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -130,10 +138,10 @@ GMP 由来 基于没有什么是加一个中间层不能解决的思路，golang
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">深入探讨Go语言协程调度：GRM模型解析与优化策略</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xxxx</a></span>&nbsp;<span class="post-category">included in <a href="/categories/go/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Go</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-28">2024-04-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;28 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;<span id="/go-gmp/" class="leancloud_visitors" data-flag-title="深入探讨Go语言协程调度：GRM模型解析与优化策略">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX"></h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xxxx</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;42 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;<span id="/go-gmp/" class="leancloud_visitors" data-flag-title="">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -147,11 +155,13 @@ GMP 由来 基于没有什么是加一个中间层不能解决的思路，golang
       <ul>
         <li><a href="#gm-模型">GM 模型</a></li>
         <li><a href="#gmp-模型">GMP 模型</a></li>
+        <li><a href="#gmp流程分析">GMP流程分析</a></li>
       </ul>
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="调度器-gmp-模型">调度器 GMP 模型</h1>
+            </div><div class="content" id="content"><h1 id="深入探讨go语言协程调度grm模型解析与优化策略">深入探讨Go语言协程调度：GRM模型解析与优化策略</h1>
+<h1 id="调度器-gmp-模型">调度器 GMP 模型</h1>
 <ol>
 <li>
 <p>G：goroutine（协程）</p>
@@ -196,31 +206,92 @@ GMP 由来 基于没有什么是加一个中间层不能解决的思路，golang
 </li>
 </ul>
 <h3 id="gmp-模型">GMP 模型</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./images/640.png"
+        data-srcset="./images/640.png, ./images/640.png 1.5x, ./images/640.png 2x"
+        data-sizes="auto"
+        alt="./images/640.png"
+        title="gmp调度" /></p>
+<h3 id="gmp流程分析">GMP流程分析</h3>
+<ul>
+<li>我们通过go func()来创建一个goroutine</li>
+</ul>
+<p>1、 P本地队列获取G</p>
+<ul>
+<li>M想要运行G，就要先获取P，然后从P的本地队列获取G
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./images/6401.gif"
+        data-srcset="./images/6401.gif, ./images/6401.gif 1.5x, ./images/6401.gif 2x"
+        data-sizes="auto"
+        alt="./images/6401.gif"
+        title="P本地队列获取G" /></li>
+</ul>
+<p>2、本地队列中G移动到全局队列</p>
+<ul>
+<li>新建G时，新G会优先加入到P的本地队列</li>
+<li>如果本地队列满了，则会把本地队列中一半的G移动到全局队列
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./images/6402.gif"
+        data-srcset="./images/6402.gif, ./images/6402.gif 1.5x, ./images/6402.gif 2x"
+        data-sizes="auto"
+        alt="./images/6402.gif"
+        title="P本地队列获取G" /></li>
+</ul>
+<p>3、从其他P本地队列的G放到自己P队列</p>
+<ul>
+<li>如果全局队列为空时，M会从其他P的本地队列偷（stealing）一半G放到自己P的本地队列
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./images/6403.gif"
+        data-srcset="./images/6403.gif, ./images/6403.gif 1.5x, ./images/6403.gif 2x"
+        data-sizes="auto"
+        alt="./images/6403.gif"
+        title="P本地队列获取G" /></li>
+</ul>
+<p>4、M从P获取下一个G，不断重复</p>
+<ul>
+<li>M运行G，G执行之后，M会从P获取下一个G，不断重复下去
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./images/6404.gif"
+        data-srcset="./images/6404.gif, ./images/6404.gif 1.5x, ./images/6404.gif 2x"
+        data-sizes="auto"
+        alt="./images/6404.gif"
+        title="P本地队列获取G" /></li>
+</ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-04-28</span>
+                <span>Updated on 0001-01-01</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
                             <a class="link-to-markdown" href="/go-gmp/index.md" target="_blank">Read Markdown</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://example.com/go-gmp/" data-title="深入探讨Go语言协程调度：GRM模型解析与优化策略" data-via="xxxx" data-hashtags="golang"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://example.com/go-gmp/" data-hashtag="golang"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://example.com/go-gmp/" data-title="深入探讨Go语言协程调度：GRM模型解析与优化策略"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://example.com/go-gmp/" data-title="深入探讨Go语言协程调度：GRM模型解析与优化策略"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://example.com/go-gmp/" data-title="深入探讨Go语言协程调度：GRM模型解析与优化策略"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://example.com/go-gmp/" data-title="" data-via="xxxx"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://example.com/go-gmp/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://example.com/go-gmp/" data-title=""><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://example.com/go-gmp/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://example.com/go-gmp/" data-title=""><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/golang/">Golang</a></section>
+        <section class="post-tags"></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E9%81%8D%E6%96%87%E7%AB%A0/" class="prev" rel="prev" title="我的第一遍文章"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>我的第一遍文章</a>
-            <a href="/theme-documentation-bilibili-shortcode/" class="next" rel="next" title="Theme Documentation - bilibili Shortcode">Theme Documentation - bilibili Shortcode<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav">
+            <a href="/%E6%88%91%E7%9A%84%E6%96%87%E7%AB%A0/" class="next" rel="next" title="我的文章">我的文章<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.

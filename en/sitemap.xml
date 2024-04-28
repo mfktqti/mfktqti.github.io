@@ -47,7 +47,7 @@
                     hreflang="en"
                     href="https://example.com/theme-documentation-bilibili-shortcode/"
                     /></url><url>
-            <loc>https://example.com/categories/</loc><lastmod>2024-04-28T17:02:24&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://example.com/categories/</loc><lastmod>2024-04-09T23:40:10&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
                         href="https://example.com/zh-cn/categories/"
@@ -56,36 +56,6 @@
                     hreflang="en"
                     href="https://example.com/categories/"
                     /></url><url>
-            <loc>https://example.com/categories/go/</loc><lastmod>2024-04-28T17:02:24&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://example.com/tags/golang/</loc><lastmod>2024-04-28T17:02:24&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://example.com/</loc><lastmod>2024-04-28T17:02:24&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="zh-cn"
-                        href="https://example.com/zh-cn/"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="en"
-                    href="https://example.com/"
-                    /></url><url>
-            <loc>https://example.com/posts/</loc><lastmod>2024-04-28T17:02:24&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="zh-cn"
-                        href="https://example.com/zh-cn/posts/"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="en"
-                    href="https://example.com/posts/"
-                    /></url><url>
-            <loc>https://example.com/tags/</loc><lastmod>2024-04-28T17:02:24&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="zh-cn"
-                        href="https://example.com/zh-cn/tags/"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="en"
-                    href="https://example.com/tags/"
-                    /></url><url>
-            <loc>https://example.com/go-gmp/</loc><lastmod>2024-04-28T17:02:24&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://example.com/tags/html/</loc><lastmod>2024-04-09T23:40:10&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
@@ -94,6 +64,15 @@
                     rel="alternate"
                     hreflang="en"
                     href="https://example.com/tags/html/"
+                    /></url><url>
+            <loc>https://example.com/</loc><lastmod>2024-04-09T23:40:10&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="zh-cn"
+                        href="https://example.com/zh-cn/"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="en"
+                    href="https://example.com/"
                     /></url><url>
             <loc>https://example.com/tags/markdown/</loc><lastmod>2024-04-09T23:40:10&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority><xhtml:link
                         rel="alternate"
@@ -112,6 +91,24 @@
                     rel="alternate"
                     hreflang="en"
                     href="https://example.com/categories/markdown/"
+                    /></url><url>
+            <loc>https://example.com/posts/</loc><lastmod>2024-04-09T23:40:10&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="zh-cn"
+                        href="https://example.com/zh-cn/posts/"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="en"
+                    href="https://example.com/posts/"
+                    /></url><url>
+            <loc>https://example.com/tags/</loc><lastmod>2024-04-09T23:40:10&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="zh-cn"
+                        href="https://example.com/zh-cn/tags/"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="en"
+                    href="https://example.com/tags/"
                     /></url><url>
             <loc>https://example.com/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E9%81%8D%E6%96%87%E7%AB%A0/</loc><lastmod>2024-04-09T23:03:45&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
             <loc>https://example.com/%E6%88%91%E7%9A%84%E6%96%87%E7%AB%A0/</loc><lastmod>2024-04-09T22:11:03&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
@@ -160,6 +157,7 @@
                     hreflang="en"
                     href="https://example.com/about/"
                     /></url><url>
+            <loc>https://example.com/go-gmp/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://example.com/categories/documentation/</loc><lastmod>2024-04-09T23:40:10&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
